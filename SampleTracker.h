@@ -14,8 +14,7 @@ class SampleTracker : public TrackingAlgorithm {
     SampleTracker(Settings &settings, QWidget *parent);
 
     void track(ulong frameNumber, const cv::Mat &frame) override;
-    void paint(ProxyPaintObject &,View const &view = OriginalView) override;
-    void paintOverlay(QPainter *painter) override;
+    void paint(ProxyPaintObject &, QPainter *, View const &view = OriginalView) override;
 
     void postConnect() override;
 

@@ -65,8 +65,13 @@ void SampleTracker::track(ulong, const cv::Mat &imgOriginal) {
     _imageChanged = true;
 }
 
-void SampleTracker::paint(ProxyPaintObject &p , const View &view) {
+void SampleTracker::paint(ProxyPaintObject &p , QPainter *painter, const View &view) {
     if (view.name != _currentView || _imageChanged) {
+        painter->drawRoundRect(QRectF(QPointF(100, 100), QPointF(1000, 1000)));
+        if (_showSelectorRec) {
+        drawRectangle(painter);
+        }
+
         _currentView = view.name;
 
         // getting image object will force videoView to upload it to graphic mem
@@ -78,13 +83,6 @@ void SampleTracker::paint(ProxyPaintObject &p , const View &view) {
             cv::cvtColor(_imgTracked, image, CV_GRAY2BGR);
         }
         _imageChanged=false;
-    }
-}
-
-void SampleTracker::paintOverlay(QPainter *painter) {
-    painter->drawRoundRect(QRectF(QPointF(100, 100), QPointF(1000, 1000)));
-    if (_showSelectorRec) {
-        drawRectangle(painter);
     }
 }
 
