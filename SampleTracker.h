@@ -25,7 +25,6 @@ class SampleTracker : public TrackingAlgorithm {
     void changeFilterColor();
 
   private:
-    std::shared_ptr<QFrame> _paramsFrame;
     std::shared_ptr<QFrame> _toolsFrame;
 
     QPointF _selectorRecStart;

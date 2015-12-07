@@ -19,7 +19,6 @@ extern "C" {
 
 SampleTracker::SampleTracker(Settings &settings, QWidget *parent)
     : TrackingAlgorithm(settings, parent)
-    , _paramsFrame(std::make_shared<QFrame>())
     , _toolsFrame(std::make_shared<QFrame>())
     , _showSelectorRec(false)
     , _showOriginal(false)
@@ -143,7 +142,7 @@ void SampleTracker::mouseWheelEvent(QWheelEvent *) {}
 
 
 /*std::shared_ptr<QWidget> SampleTracker::getParamsWidget() {
-    return _paramsFrame;
+    return _toolsFrame;
 }*/
 
 std::shared_ptr<QWidget> SampleTracker::getToolsWidget() {
@@ -158,21 +157,21 @@ void SampleTracker::initToolsFrame() {
 
 
 void SampleTracker::initParamsFrame() {
-    _lowHEdit  = new QLineEdit(_paramsFrame.get());
-    _highHEdit = new QLineEdit(_paramsFrame.get());
-    _lowSEdit  = new QLineEdit(_paramsFrame.get());
-    _highSEdit = new QLineEdit(_paramsFrame.get());
-    _lowVEdit  = new QLineEdit(_paramsFrame.get());
-    _highVEdit = new QLineEdit(_paramsFrame.get());
+    _lowHEdit  = new QLineEdit(_toolsFrame.get());
+    _highHEdit = new QLineEdit(_toolsFrame.get());
+    _lowSEdit  = new QLineEdit(_toolsFrame.get());
+    _highSEdit = new QLineEdit(_toolsFrame.get());
+    _lowVEdit  = new QLineEdit(_toolsFrame.get());
+    _highVEdit = new QLineEdit(_toolsFrame.get());
 
-    _colorBut = new QPushButton("change color!", _paramsFrame.get());
+    _colorBut = new QPushButton("change color!", _toolsFrame.get());
 
-    _lowHEdit->setValidator(new QIntValidator(0, 255, _paramsFrame.get()));
-    _highHEdit->setValidator(new QIntValidator(0, 255, _paramsFrame.get()));
-    _lowSEdit->setValidator(new QIntValidator(0, 255, _paramsFrame.get()));
-    _highSEdit->setValidator(new QIntValidator(0, 255, _paramsFrame.get()));
-    _lowVEdit->setValidator(new QIntValidator(0, 255, _paramsFrame.get()));
-    _highVEdit->setValidator(new QIntValidator(0, 255, _paramsFrame.get()));
+    _lowHEdit->setValidator(new QIntValidator(0, 255, _toolsFrame.get()));
+    _highHEdit->setValidator(new QIntValidator(0, 255, _toolsFrame.get()));
+    _lowSEdit->setValidator(new QIntValidator(0, 255, _toolsFrame.get()));
+    _highSEdit->setValidator(new QIntValidator(0, 255, _toolsFrame.get()));
+    _lowVEdit->setValidator(new QIntValidator(0, 255, _toolsFrame.get()));
+    _highVEdit->setValidator(new QIntValidator(0, 255, _toolsFrame.get()));
 
     _lowHEdit->setText(QString::number(_lowH));
     _highHEdit->setText(QString::number(_highH));
@@ -181,14 +180,14 @@ void SampleTracker::initParamsFrame() {
     _lowVEdit->setText(QString::number(_lowV));
     _highVEdit->setText(QString::number(_highV));
 
-    QFormLayout *layout = new QFormLayout(_paramsFrame.get());
+    QFormLayout *layout = new QFormLayout(_toolsFrame.get());
     layout->addRow("H-low",  _lowHEdit);
     layout->addRow("H-high", _highHEdit);
     layout->addRow("S-low",  _lowSEdit);
     layout->addRow("S-high", _highSEdit);
     layout->addRow("V-low",  _lowVEdit);
     layout->addRow("V-high", _highVEdit);
-    _paramsFrame->setLayout(layout);
+    _toolsFrame->setLayout(layout);
 
     QObject::connect(this->_colorBut, SIGNAL(clicked()), this,
                      SLOT(changeFilterColor()));
