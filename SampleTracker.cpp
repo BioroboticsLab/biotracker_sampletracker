@@ -141,9 +141,10 @@ void SampleTracker::mouseReleaseEvent(QMouseEvent *e) {
 
 void SampleTracker::mouseWheelEvent(QWheelEvent *) {}
 
-std::shared_ptr<QWidget> SampleTracker::getParamsWidget() {
+
+/*std::shared_ptr<QWidget> SampleTracker::getParamsWidget() {
     return _paramsFrame;
-}
+}*/
 
 std::shared_ptr<QWidget> SampleTracker::getToolsWidget() {
     return _toolsFrame;

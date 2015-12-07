@@ -19,7 +19,6 @@ class SampleTracker : public TrackingAlgorithm {
 
     void postConnect() override;
 
-    std::shared_ptr<QWidget> getParamsWidget() override;
     std::shared_ptr<QWidget> getToolsWidget() override;
 
   public Q_SLOTS:
