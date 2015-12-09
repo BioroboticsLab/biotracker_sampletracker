@@ -17,8 +17,8 @@ extern "C" {
     }
 }
 
-SampleTracker::SampleTracker(Settings &settings, QWidget *parent)
-    : TrackingAlgorithm(settings, parent)
+SampleTracker::SampleTracker(Settings &settings)
+    : TrackingAlgorithm(settings)
     , _toolsFrame(std::make_shared<QFrame>())
     , _showSelectorRec(false)
     , _showOriginal(false)

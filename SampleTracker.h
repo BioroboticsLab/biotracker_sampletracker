@@ -11,7 +11,7 @@
 class SampleTracker : public TrackingAlgorithm {
     Q_OBJECT
   public:
-    SampleTracker(Settings &settings, QWidget *parent);
+    SampleTracker(Settings &settings);
 
     void track(ulong frameNumber, const cv::Mat &frame) override;
     void paint(cv::Mat &m, View const &view = OriginalView) override;
