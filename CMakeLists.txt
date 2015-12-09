@@ -56,7 +56,7 @@ set(CMAKE_AUTOMOC ON)
 add_definitions(${Qt5Widgets_DEFINITIONS})
 add_definitions(-DQT_NO_KEYWORDS)
 
-add_library(sampletracker SHARED
+add_library(sampletracker.tracker SHARED
     SampleTracker.cpp
     SampleObject.cpp
 )
