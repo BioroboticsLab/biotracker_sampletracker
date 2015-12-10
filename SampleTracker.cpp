@@ -81,7 +81,7 @@ void SampleTracker::paint(cv::Mat &image, const TrackingAlgorithm::View &view) {
     }
 }
 
-void SampleTracker::paintOverlay(QPainter *painter) {
+void SampleTracker::paintOverlay(QPainter *painter, View const &) {
     painter->drawRoundRect(QRectF(QPointF(100, 100), QPointF(1000, 1000)));
     if (_showSelectorRec) {
         drawRectangle(painter);
