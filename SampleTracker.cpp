@@ -64,18 +64,13 @@ void SampleTracker::track(ulong, const cv::Mat &imgOriginal) {
     _imageChanged = true;
 }
 
-void SampleTracker::paint(cv::Mat &image, const TrackingAlgorithm::View &view) {
+void SampleTracker::paint(ProxyMat &image, const TrackingAlgorithm::View &view) {
  if (view.name != _currentView || _imageChanged) {
-
-
         _currentView = view.name;
 
-        // getting image object will force videoView to upload it to graphic mem
-        // this is necessarry even if we do not change the picture, since we changed
-        // it before and otherwise we would still be stuck with the old one
         if (!_imgTracked.empty() && _currentView == "Filter") {
             //since gui is expecting a BGR image we have to convert our grayscale image
-            cv::cvtColor(_imgTracked, image, CV_GRAY2BGR);
+            cv::cvtColor(_imgTracked, image.getMat(), CV_GRAY2BGR);
         }
         _imageChanged=false;
     }
