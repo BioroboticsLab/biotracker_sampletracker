@@ -13,9 +13,9 @@ class SampleTracker : public TrackingAlgorithm {
   public:
     SampleTracker(Settings &settings);
 
-    void track(ulong frameNumber, const cv::Mat &frame) override;
-    void paint(ProxyMat &m, View const &view = OriginalView) override;
-    void paintOverlay(QPainter *, View const &) override;
+    void track(size_t frameNumber, const cv::Mat &frame) override;
+    void paint(size_t frameNumber, ProxyMat &m, View const &view = OriginalView) override;
+    void paintOverlay(size_t frameNumber, QPainter *, View const &) override;
 
     void postConnect() override;
 

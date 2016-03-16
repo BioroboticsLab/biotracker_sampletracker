@@ -32,7 +32,7 @@ SampleTracker::SampleTracker(Settings &settings)
     _imageChanged=false;
 }
 
-void SampleTracker::track(ulong, const cv::Mat &imgOriginal) {
+void SampleTracker::track(size_t, const cv::Mat &imgOriginal) {
     //dont do nothing if we ain't got an image
     if (imgOriginal.empty()) {
         return;
@@ -62,7 +62,7 @@ void SampleTracker::track(ulong, const cv::Mat &imgOriginal) {
     _imageChanged = true;
 }
 
-void SampleTracker::paint(ProxyMat &image, const TrackingAlgorithm::View &view) {
+void SampleTracker::paint(size_t, ProxyMat &image, const TrackingAlgorithm::View &view) {
  if (view.name != _currentView || _imageChanged) {
         _currentView = view.name;
 
@@ -74,7 +74,7 @@ void SampleTracker::paint(ProxyMat &image, const TrackingAlgorithm::View &view) 
     }
 }
 
-void SampleTracker::paintOverlay(QPainter *painter, View const &) {
+void SampleTracker::paintOverlay(size_t, QPainter *painter, View const &) {
     painter->drawRoundRect(QRectF(QPointF(100, 100), QPointF(1000, 1000)));
     if (_showSelectorRec) {
         drawRectangle(painter);
