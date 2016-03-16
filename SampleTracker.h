@@ -19,14 +19,10 @@ class SampleTracker : public TrackingAlgorithm {
 
     void postConnect() override;
 
-    std::shared_ptr<QWidget> getToolsWidget() override;
-
   public Q_SLOTS:
     void changeFilterColor();
 
   private:
-    std::shared_ptr<QFrame> _toolsFrame;
-
     QPointF _selectorRecStart;
     QPointF _selectorRecEnd;
 
@@ -58,7 +54,6 @@ class SampleTracker : public TrackingAlgorithm {
     std::vector<TrackedObject> _trackedObjects;
 
     void drawRectangle(QPainter *painter);
-    void initParamsFrame();
     void initToolsFrame();
 
   private:
