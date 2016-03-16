@@ -139,8 +139,6 @@ void SampleTracker::mouseWheelEvent(QWheelEvent *) {}
 }*/
 
 void SampleTracker::initToolsFrame() {
-    new QTextEdit(getToolsWidget());
-
     _lowHEdit  = new QLineEdit(getToolsWidget());
     _highHEdit = new QLineEdit(getToolsWidget());
     _lowSEdit  = new QLineEdit(getToolsWidget());
@@ -165,6 +163,7 @@ void SampleTracker::initToolsFrame() {
     _highVEdit->setText(QString::number(_highV));
 
     QFormLayout *layout = new QFormLayout(getToolsWidget());
+    layout->addRow(_colorBut);
     layout->addRow("H-low",  _lowHEdit);
     layout->addRow("H-high", _highHEdit);
     layout->addRow("S-low",  _lowSEdit);
