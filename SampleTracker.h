@@ -7,14 +7,17 @@
 #include <QPushButton>
 
 #include <biotracker/TrackingAlgorithm.h>
+#include <biotracker/settings/Settings.h>
 
-class SampleTracker : public TrackingAlgorithm {
+namespace bc = BioTracker::Core;
+
+class SampleTracker : public bc::TrackingAlgorithm {
     Q_OBJECT
   public:
-    SampleTracker(Settings &settings);
+    SampleTracker(bc::Settings &settings);
 
     void track(size_t frameNumber, const cv::Mat &frame) override;
-    void paint(size_t frameNumber, ProxyMat &m, View const &view = OriginalView) override;
+    void paint(size_t frameNumber, bc::ProxyMat &m, View const &view = OriginalView) override;
     void paintOverlay(size_t frameNumber, QPainter *, View const &) override;
 
     void postConnect() override;
@@ -51,7 +54,7 @@ class SampleTracker : public TrackingAlgorithm {
     std::string _currentView;
     bool _imageChanged;
 
-    std::vector<TrackedObject> _trackedObjects;
+    std::vector<bc::TrackedObject> _trackedObjects;
 
     void drawRectangle(QPainter *painter);
     void initToolsFrame();

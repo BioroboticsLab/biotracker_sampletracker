@@ -8,17 +8,18 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include <biotracker/settings/Settings.h>
 #include <biotracker/TrackingAlgorithm.h>
 #include <biotracker/Registry.h>
 
 extern "C" {
     void registerTracker() {
-        BioTracker::Core::Registry::getInstance().registerTrackerType<SampleTracker>("SampleTracker");
+        bc::Registry::getInstance().registerTrackerType<SampleTracker>("SampleTracker");
     }
 }
 
-SampleTracker::SampleTracker(Settings &settings)
-    : TrackingAlgorithm(settings)
+SampleTracker::SampleTracker(bc::Settings &settings)
+    : bc::TrackingAlgorithm(settings)
     , _showSelectorRec(false)
     , _showOriginal(false)
     , _lowH(0)
@@ -62,7 +63,7 @@ void SampleTracker::track(size_t, const cv::Mat &imgOriginal) {
     _imageChanged = true;
 }
 
-void SampleTracker::paint(size_t, ProxyMat &image, const TrackingAlgorithm::View &view) {
+void SampleTracker::paint(size_t, bc::ProxyMat &image, const TrackingAlgorithm::View &view) {
  if (view.name != _currentView || _imageChanged) {
         _currentView = view.name;
 
@@ -126,7 +127,7 @@ void SampleTracker::mouseReleaseEvent(QMouseEvent *e) {
                                QString::number(_selectorRecStart.y()).toStdString()
                                + " to " +  QString::number(_selectorRecEnd.x()).toStdString() + ":"+
                                QString::number(_selectorRecEnd.y()).toStdString();
-            Q_EMIT notifyGUI(note,MSGS::NOTIFICATION);
+            Q_EMIT notifyGUI(note, bc::MessageType::NOTIFICATION);
         }
     }
 }

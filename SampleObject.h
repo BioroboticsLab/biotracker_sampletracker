@@ -5,7 +5,7 @@
 #include <biotracker/serialization/ObjectModel.h>
 
 class SampleObject :
-    public ObjectModel {
+    public BioTracker::Core::ObjectModel {
   public:
     SampleObject(void);
     virtual ~SampleObject(void);
