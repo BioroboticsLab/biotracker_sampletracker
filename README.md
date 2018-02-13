@@ -2,62 +2,21 @@
 
 This repository showcases how you can implement a new tracking algorithm for BioTracker. 
 
-Just fork this repository and you're ready to go.
-
 Please note that tracking algorithms are only certain to work with BioTracker if they are compiled
 with the same compiler using the same C++ standard library. 
 
-## Manual setup
+## Building on Windows
 
-### CMake config
+Configuring without rebuilding the BioTracker:  
+- Download and extract the latest Biotracker and library from https://github.com/BioroboticsLab/biotracker_core/releases  
+- Clone or fork the sampletracker and configure using CMake
+- Building requires the same dependencies as the BioTracker. They are toolchained exactly like the BioTracker, see corresponding readme. 
+- In CMake, set variable "BTLibrary" to the the path you extracted the library to. Alternatively, set your path enviromental variable correctly.
+- Configure & Build
+- Run Biotracker and load generated DLL
 
-We use CMake in combination with the CPM package manager for our projects.
+## Building on Linux
 
-Initialization of CPM in CMakeLists.txt
-```CMake
-set(CPM_DIR "${CMAKE_CURRENT_BINARY_DIR}/cpm_packages" CACHE TYPE STRING)
-find_package(Git)
-if(NOT GIT_FOUND)
-  message(FATAL_ERROR "CPM requires Git.")
-endif()
-if (NOT EXISTS ${CPM_DIR}/CPM.cmake)
-  message(STATUS "Cloning repo (https://github.com/iauns/cpm)")
-  execute_process(
-    COMMAND "${GIT_EXECUTABLE}" clone https://github.com/iauns/cpm ${CPM_DIR}
-    RESULT_VARIABLE error_code
-    OUTPUT_QUIET ERROR_QUIET)
-  if(error_code)
-    message(FATAL_ERROR "CPM failed to get the hash for HEAD")
-  endif()
-endif()
-include(${CPM_DIR}/CPM.cmake)
-```
-
-Now you can use our shared c++ compilation settings and add the BioTracker Core as a CPM dependency.
-```CMake
-if(NOT DEFINED CMAKECONFIG_PATH)
-    CPM_AddModule("cmakeconfig"
-        GIT_REPOSITORY "https://github.com/BioroboticsLab/cmakeconfig.git"
-        GIT_TAG "master")
-else()
-    CPM_AddModule("cmakeconfig"
-        SOURCE_DIR "${CMAKECONFIG_PATH}")
-endif()
-
-include_biotracker_core("master")
-
-CPM_Finish()
-
-biorobotics_config()
-```
-
-### Registration
-```C++
-extern "C" {
-    void registerTracker() {
-        BioTracker::Core::Registry::getInstance().registerTrackerType<SampleTracker>("SampleTracker");
-    }
-}
-```
-
-
+Toolchain is windows-specific and needs adjustment for linux convinience.  
+Build the BioTracker from source and add generated libraries to the binary folder of the release download.
+Otherwise do as in the windows guide.
