@@ -1,6 +1,6 @@
 {   "type" :            "TrackingPlugin",
     "name" :            "Sample Tracker",
     "longname" :        "some long name",
-    "version" :         "1.1",
+    "version" :         "CURRENT_GIT_HASH",
     "dependencies" :    []
 }

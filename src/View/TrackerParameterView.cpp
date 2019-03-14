@@ -1,8 +1,9 @@
 #include "TrackerParameterView.h"
 #include "ui_TrackerParameterView.h"
-#include "Model/TrackerParameter.h"
+#include "../Model/TrackerParameter.h"
 
 #include <iostream>
+#include <QIntValidator>
 
 TrackerParameterView::TrackerParameterView(QWidget *parent, IController *controller, IModel *model) :
 	IViewWidget(parent, controller, model),

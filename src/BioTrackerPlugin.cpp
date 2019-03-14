@@ -4,11 +4,8 @@
 #include "Controller/ControllerTrackingAlgorithm.h"
 #include "Controller/ControllerTrackedComponent.h"
 
-#include "util/singleton.h"
-#include "settings/Settings.h"
-
 #include "View/TrackedElementView.h"
-#include "TrackedComponents/TrackedComponentFactory.h"
+#include "Utility/TrackedComponents/TrackedComponentFactory.h"
 
 BioTrackerPlugin::BioTrackerPlugin() {
 }
@@ -114,21 +111,7 @@ void BioTrackerPlugin::receiveSwapIds(IModelTrackedTrajectory * trajectory0, IMo
 }
 
 void BioTrackerPlugin::sendCorePermissions() {
-	// get plugin settings
-	BioTracker::Core::Settings *pluginSettings = BioTracker::Util::TypedSingleton<BioTracker::Core::Settings>::getInstance(LUKASKANADE::CONFIGPARAM::CONFIG_INI_FILE);
 
-	// signal permissions
-	bool enableView = pluginSettings->getValueOrDefault(LUKASKANADE::GUIPARAM::ENABLE_CORE_COMPONENT_VIEW, true);
-	Q_EMIT emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>(ENUMS::COREPERMISSIONS::COMPONENTVIEW, enableView));
-	bool enableMove = pluginSettings->getValueOrDefault(LUKASKANADE::GUIPARAM::ENABLE_CORE_COMPONENT_MOVE, true);
-	Q_EMIT emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>(ENUMS::COREPERMISSIONS::COMPONENTMOVE, enableMove));
-	bool enableRemove = pluginSettings->getValueOrDefault(LUKASKANADE::GUIPARAM::ENABLE_CORE_COMPONENT_REMOVE, true);
-	Q_EMIT emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>(ENUMS::COREPERMISSIONS::COMPONENTREMOVE, enableRemove));
-	bool enableSwap = pluginSettings->getValueOrDefault(LUKASKANADE::GUIPARAM::ENABLE_CORE_COMPONENT_ID_SWAP, true);
-	Q_EMIT emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>(ENUMS::COREPERMISSIONS::COMPONENTSWAP, enableSwap));
-	bool enableAdd = pluginSettings->getValueOrDefault(LUKASKANADE::GUIPARAM::ENABLE_CORE_COMPONENT_ADD, true);
-	Q_EMIT emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>(ENUMS::COREPERMISSIONS::COMPONENTADD, enableAdd));
-	//bool enableRotate = pluginSettings->getValueOrDefault(LUKASKANADE::GUIPARAM::ENABLE_CORE_COMPONENT_ROTATE, false);
-	//Q_EMIT emitCorePermission(std::pair<ENUMS::COREPERMISSIONS, bool>(ENUMS::COREPERMISSIONS::COMPONENTROTATE, enableRotate));
+	//TODO put desired permissions here
 }
 

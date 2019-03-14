@@ -1,20 +1,19 @@
 #ifndef BIOTRACKERPLUGIN_H
 #define BIOTRACKERPLUGIN_H
 
-#include "biotrackerplugin_global.h"
 #include "opencv2/core/core.hpp"
 #include "Interfaces/IBioTrackerContext.h"
 
 #include "Interfaces/IBioTrackerPlugin.h"
-#include "TrackedComponents/TrackedComponentFactory.h"
 
 #include "QPointer"
 #include "memory"
 #include "QPoint"
 
-class BIOTRACKERPLUGINSHARED_EXPORT BioTrackerPlugin : public IBioTrackerPlugin {
+class Q_DECL_EXPORT BioTrackerPlugin : public IBioTrackerPlugin {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "de.fu-berlin.mi.biorobotics.BioTrackerPlugin" FILE "BioTrackerPlugin.json")
+	Q_INTERFACES(IBioTrackerPlugin)
+	Q_PLUGIN_METADATA(IID IBioTrackerPlugin_iid FILE "plugin.json")
 	Q_INTERFACES(IBioTrackerPlugin)
 
   public:
